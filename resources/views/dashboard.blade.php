@@ -175,54 +175,7 @@
                                                 {!! nl2br(__("Module is still under development, please tune in for more updates.\n")) !!}
                                             </p>
                                             @foreach ($subscriber->details as $detail)
-                                            <ul role="list" class="divide-y divide-gray-100">
-                                                <x-modal name="edit-provider-{{ $detail->id }}" focusable class="max-w-md">
-                                                    <div class="w-full p-6">
-                                                        <form class="space-y-4 md:space-y-6"
-                                                            action="{{ route('updateProvider', ['subscriber' => $subscriber->id, 'provider' => $detail->id]) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('patch')
-                                                            <h2 class="text-lg font-medium text-white">
-                                                                {{ __('Update Provider Information') }}
-                                                            </h2>
-
-                                                            <p class="mt-1 text-sm text-white">
-                                                                {!! nl2br(__("Module is still under development, please tune in for more updates.\n")) !!}
-                                                            </p>
-                                                            <div class="mt-3 flex-1 mx-1">
-                                                                <x-input-label for="phoneNumber"
-                                                                    class="mt-3 block text-base font-medium ">
-                                                                    Contact number:
-                                                                    <span class="text-red-500">*</span>
-                                                                </x-input-label>
-                                                                <x-text-input class="block mt-1 w-full" type="text"
-                                                                    name="phoneNumber" autocomplete="off" :value="$detail->phoneNumber ?? ''">
-                                                                </x-text-input>
-                                                                <x-input-error :messages="$errors->get('lName')"
-                                                                    class="mt-2 text-facilityEaseMain font-bold italic text-sm text-right my-1" />
-                                                            </div>
-                                                            <div class="mt-3 flex-1 mx-1">
-                                                                <x-input-label for="provider"
-                                                                    class="mt-3 block text-base font-medium ">
-                                                                    Provider:
-                                                                    <span class="text-red-500">*</span>
-                                                                </x-input-label>
-                                                                <x-text-input class="block mt-1 w-full" type="text"
-                                                                    name="provider" autocomplete="off" :value="$detail->provider ?? ''">
-                                                                </x-text-input>
-                                                                <x-input-error :messages="$errors->get('fName')"
-                                                                    class="mt-2 text-facilityEaseMain font-bold italic text-sm text-right my-1" />
-                                                            </div>
-                                                            <div class="mt-9 flex justify-end">
-                                                                <x-primary-button
-                                                                    class="ms-3 items-center justify-center py-2 w-1/2">
-                                                                    {{ __('Update Provider') }}
-                                                                </x-primary-button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </x-modal>
+                                                <ul role="list" class="divide-y divide-gray-100">
                                                     <li class="flex justify-between gap-x-6 py-5">
                                                         <div class="flex min-w-0 gap-x-4">
                                                             <div class="min-w-0 flex-auto">
@@ -261,7 +214,7 @@
                                                         </div>
                                                     </li>
 
-                                            </ul>
+                                                </ul>
                                             @endforeach
                                             <div class="mt-9 flex justify-end">
                                                 <x-primary-button x-data=""
@@ -272,6 +225,55 @@
                                             </div>
                                         </div>
                                     </x-modal>
+                                    @foreach ($subscriber->details as $detail)
+                                        <x-modal name="edit-provider-{{ $detail->id }}" focusable class="max-w-md">
+                                            <div class="w-full p-6">
+                                                <form class="space-y-4 md:space-y-6"
+                                                    action="{{ route('updateProvider', ['subscriber' => $subscriber->id, 'provider' => $detail->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('patch')
+                                                    <h2 class="text-lg font-medium text-white">
+                                                        {{ __('Update Provider Information') }}
+                                                    </h2>
+
+                                                    <p class="mt-1 text-sm text-white">
+                                                        {!! nl2br(__("Module is still under development, please tune in for more updates.\n")) !!}
+                                                    </p>
+                                                    <div class="mt-3 flex-1 mx-1">
+                                                        <x-input-label for="provider"
+                                                            class="mt-3 block text-base font-medium ">
+                                                            Provider:
+                                                            <span class="text-red-500">*</span>
+                                                        </x-input-label>
+                                                        <x-text-input class="block mt-1 w-full" type="text"
+                                                            name="provider" autocomplete="off" :value="$detail->provider ?? ''">
+                                                        </x-text-input>
+                                                        <x-input-error :messages="$errors->get('provider')"
+                                                            class="mt-2 text-facilityEaseMain font-bold italic text-sm text-right my-1" />
+                                                    </div>
+                                                    <div class="mt-3 flex-1 mx-1">
+                                                        <x-input-label for="phoneNumber"
+                                                            class="mt-3 block text-base font-medium ">
+                                                            Contact number:
+                                                            <span class="text-red-500">*</span>
+                                                        </x-input-label>
+                                                        <x-text-input class="block mt-1 w-full" type="text"
+                                                            name="phoneNumber" autocomplete="off" :value="$detail->phoneNumber ?? ''">
+                                                        </x-text-input>
+                                                        <x-input-error :messages="$errors->get('phoneNumber')"
+                                                            class="mt-2 text-facilityEaseMain font-bold italic text-sm text-right my-1" />
+                                                    </div>
+                                                    <div class="mt-9 flex justify-end">
+                                                        <x-primary-button
+                                                            class="ms-3 items-center justify-center py-2 w-1/2">
+                                                            {{ __('Update Provider') }}
+                                                        </x-primary-button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </x-modal>
+                                    @endforeach
                                     <x-modal name="add-provider-{{ $subscriber->id }}" focusable class="max-w-md">
                                         <div class="w-full p-6">
                                             <form class="space-y-4 md:space-y-6" action="{{ route('addProvider') }}"

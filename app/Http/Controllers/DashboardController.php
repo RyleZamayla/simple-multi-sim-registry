@@ -76,7 +76,7 @@ class DashboardController extends Controller
     {
         $subscriber = Subscriber::find($subscriberId);
         $provider = SubscriberDetails::findOrFail($id);
-        
+
 
         $provider->update([
             'provider' => $request->input('provider'),
@@ -90,7 +90,7 @@ class DashboardController extends Controller
 
     public function deleteProvider($subscriberId, $providerId)
     {
-        $subscriber = Subscriber::find($subscriberId);
+        $subscriber = Subscriber::findOrFail($subscriberId);
         $subscriberDetails = SubscriberDetails::findOrFail($providerId);
         $subscriberDetails->delete();
 
