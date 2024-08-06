@@ -7,6 +7,26 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex">
+                @if (session('success'))
+                    <div class="dark:bg-teal-100 border-t-4 dark:border-teal-500 rounded-b dark:text-teal-900 px-4 py-3 shadow-md"
+                        role="alert">
+                        <div class="flex">
+                            <div class="py-1">
+                                <svg class="fill-current h-6 w-6 text-teal-500 mr-4"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path
+                                        d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-bold">{{ session('success') }}</p>
+                                <p class="text-sm">Operation completed successfully.</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </div>
             <div class="dark:bg-slate-400 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-4 sm:p-8 dark:bg-slate-400 shadow sm:rounded-lg">
                     <div class="flex justify-end">
@@ -44,7 +64,6 @@
                                     <div class="mt-3 flex-1 mx-1">
                                         <x-input-label for="middleName" class="mt-3 block text-base font-medium ">
                                             Middle Name:
-                                            <span class="text-red-500">*</span>
                                         </x-input-label>
                                         <x-text-input type="text" name="middleName" id="middleName"
                                             class="mt-1 block w-full" required="" />
@@ -52,7 +71,7 @@
                                     <div class="mt-3 flex-1 mx-1">
                                         <x-input-label for="gender" class="mt-3 block text-base font-medium">
                                             Gender:
-                                            <span class="text-red-500 opacity-0">*</span>
+                                            <span class="text-red-500">*</span>
                                         </x-input-label>
                                         <select name="gender" id="gender"
                                             class="w-full rounded-md h-10 hover:cursor-pointer pl-2 dark:bg-gray-900 dark:text-white dark:border-gray-700">
@@ -357,7 +376,6 @@
                                                     <x-input-label for="middleName"
                                                         class="mt-3 block text-base font-medium ">
                                                         Middle Name:
-                                                        <span class="text-red-500">*</span>
                                                     </x-input-label>
                                                     <x-text-input class="block mt-1 w-full" type="text"
                                                         name="middleName" autocomplete="off" :value="$subscriber->middleName ?? ''">
@@ -369,7 +387,7 @@
                                                     <x-input-label for="gender"
                                                         class="mt-3 block text-base font-medium">
                                                         Gender:
-                                                        <span class="text-red-500 opacity-0">*</span>
+                                                        <span class="text-red-500">*</span>
                                                     </x-input-label>
                                                     <select name="gender" id="gender"
                                                         class="w-full rounded-md h-10 hover:cursor-pointer pl-2 dark:bg-gray-900 dark:text-white dark:border-gray-700">
