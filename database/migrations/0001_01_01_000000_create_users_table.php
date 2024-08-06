@@ -25,7 +25,7 @@ return new class extends Migration
             $table->id();
             $table->string('lastName');
             $table->string('firstName');
-            $table->string('middleName');
+            $table->string('middleName')->nullable();
             $table->longText('address');
             $table->boolean('gender');
             $table->timestamps();

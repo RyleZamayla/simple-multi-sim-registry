@@ -20,7 +20,7 @@ class DashboardController extends Controller
             $request->validate([
                 'lastName' => 'required|string|max:255',
                 'firstName' => 'required|string|max:255',
-                'middleName' => 'required|string|max:255',
+                'middleName' => 'string|max:255',
                 'address' => 'required|string|max:255',
                 'gender' => 'required|int',
             ]);
@@ -28,6 +28,7 @@ class DashboardController extends Controller
             $subscriber = $request->all();
 
             Subscriber::create($subscriber);
+            session()->flash('success', 'Subscriber added successfully.');
 
             return redirect()->route('dashboard');
         } catch (\Exception $e) {
